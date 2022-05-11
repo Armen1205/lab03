@@ -25,12 +25,48 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
         run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+         $ cd formatter
+         $ cat >> CMakeLists.txt <<EOF
+         cmake_minimum_required(VERSION 3.4)
+         project(formatter)
+         set(CMAKE_CXX_STANDARD 11)
+         set(CMAKE_CXX_STANDARD_REQUIRED ON)  
+         add_library(formatter_lib1 STATIC ${CMAKE_CURRENT_SOURCE_DIR}/formatter.cpp)
+         add_executable(formatter ${CMAKE_CURRENT_SOURCE_DIR}/formatter.cpp)
+         target_link_libraries(formatter formatter_lib1)
+         EOF
+         
+         $ cd formatter_ex
+         $ cat >> CMakeLists1.txt <<EOF
+         cmake_minimum_required(VERSION 3.4)
+         project(formatter_ex)
+         set(CMAKE_CXX_STANDARD 11)
+         set(CMAKE_CXX_STANDARD_REQUIRED ON)
+         add_library(formatter_exlib STATIC ${CMAKE_CURRENT_SOURCE_DIR}/formatter_ex.cpp)
+         add_executable(formatter_ex ${CMAKE_CURRENT_SOURCE_DIR}/formatter_ex.cpp)
+         target_link_libraries(formatter_ex formatter_exlib)
+         EOF
+         
+         Cmakelists.txt
+         cmake_minimum_required(VERSION 3.4) #solver_lib
+         project(solver_lib)
+         set(CMAKE_CXX_STANDARD 11)
+         set(CMAKE_CXX_STANDARD_REQUIRED ON)
+         add_library(solver_lib STATIC ${CMAKE_CURRENT_SOURCE_DIR}/solver.cpp)
+         add_executable(solver ${CMAKE_CURRENT_SOURCE_DIR}/solver.cpp)
+         target_link_libraries(solver solver_lib)
+         Cmakelists.txt
+         cmake_minimum_required(VERSION 3.4) # solver
+         project(solver_app)
+         set(CMAKE_CXX_STANDARD 11)
+         set(CMAKE_CXX_STANDARD_REQUIRED ON)
+         add_executable(solver_app ${CMAKE_CURRENT_SOURCE_DIR}/equation.cpp)
+         Cmakelists.txt
+         cmake_minimum_required(VERSION 3.4) #hello_world
+         project(hello_world)
+         set(CMAKE_CXX_STANDARD 11)
+         set(CMAKE_CXX_STANDARD_REQUIRED ON)
+         add_executable(hello_world ${CMAKE_CURRENT_SOURCE_DIR}/hello_world.cpp)
