@@ -48,7 +48,7 @@ jobs:
          target_link_libraries(formatter_ex formatter_exlib)
          EOF
          
-         Cmakelists.txt
+         cat >> Cmakelists.txt << EOF
          cmake_minimum_required(VERSION 3.4)
          project(solver_lib)
          set(CMAKE_CXX_STANDARD 11)
@@ -68,3 +68,4 @@ jobs:
          set(CMAKE_CXX_STANDARD 11)
          set(CMAKE_CXX_STANDARD_REQUIRED ON)
          add_executable(hello_world ${CMAKE_CURRENT_SOURCE_DIR}/hello_world.cpp)
+         EOF
