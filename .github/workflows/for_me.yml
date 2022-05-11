@@ -28,7 +28,7 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
         run: |
-         cat >> CMakeLists.txt <<EOF
+         cat >> CMakeLists1.txt <<EOF
          cmake_minimum_required(VERSION 3.4)
          project(formatter)
          set(CMAKE_CXX_STANDARD 11)
@@ -38,17 +38,17 @@ jobs:
          target_link_libraries(formatter formatter_lib1)
          EOF
      
-         cat >> CMakeLists1.txt <<EOF
+         cat >> CMakeLists2.txt <<EOF
          cmake_minimum_required(VERSION 3.4)
          project(formatter_ex)
          set(CMAKE_CXX_STANDARD 11)
          set(CMAKE_CXX_STANDARD_REQUIRED ON)
-         add_library(formatter_exlib STATIC ${CMAKE_CURRENT_SOURCE_DIR}/formatter_ex.cpp)
+         add_library(formatter_ex STATIC ${CMAKE_CURRENT_SOURCE_DIR}/formatter_ex.cpp)
          add_executable(formatter_ex ${CMAKE_CURRENT_SOURCE_DIR}/formatter_ex.cpp)
          target_link_libraries(formatter_ex formatter_exlib)
          EOF
          
-         cat >> Cmakelists.txt << EOF
+         cat >> Cmakelists3.txt << EOF
          cmake_minimum_required(VERSION 3.4)
          project(solver_lib)
          set(CMAKE_CXX_STANDARD 11)
